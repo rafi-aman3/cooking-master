@@ -17,6 +17,7 @@ const searchMealsData = async () => {
         mealContainer.innerHTML = alertMessage;
     }
     document.getElementById("searchMeal").value = '';
+    //document.getElementById("meal-detail").style.display = 'none';
 };
 
 //Display Meals
@@ -40,20 +41,30 @@ const displayMealDetails = async (mealId) => {
     let response = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+ mealId);
     let data = await response.json();
     let meals = data.meals[0];
+
+
+    
     let mealDetail = `
     <img src="${meals.strMealThumb}" alt="">
     <h2>${meals.strMeal}</h2>
     <h3>Ingredients</h3>
-    <ul>
-        <li>${meals.strIngredient1}</li>
-        <li>${meals.strIngredient2}</li>
-        <li>${meals.strIngredient3}</li>
-        <li>${meals.strIngredient4}</li>
-        <li>${meals.strIngredient5}</li>
-        <li>${meals.strIngredient6}</li>
-        </ul>
         `;        
     document.getElementById("meal-detail").innerHTML = mealDetail;
+
+    let ingredientList = [];
+    for (let i = 1; i <= 20; i++) {
+        if (meals[`strIngredient${i}`]) {
+            ingredientList.push(meals[`strIngredient${i}`]);
+        }
+    }
+    ul = document.createElement('ul');
+    document.getElementById("meal-detail").appendChild(ul);
+    ingredientList.forEach(item => {
+        let li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML = item;
+        
+    });
 };
 
 
