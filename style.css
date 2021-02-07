@@ -1,0 +1,25 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #EDD263;
+}
+
+.button {
+    background: #3b2d64;
+    color: #ffffff
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+
+}
+
+.meal-item {
+    cursor: pointer;
+}
+.meal-detail img {
+
+    
+    
+}
